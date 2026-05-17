@@ -1,13 +1,43 @@
-'use client';
+"use client";
 
-import { Calendar as CalendarIcon, Users, Clock, Settings, LogOut, ChevronLeft, ChevronRight, MessageCircle } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import {
+  Calendar as CalendarIcon,
+  Users,
+  Clock,
+  Settings,
+  LogOut,
+  ChevronLeft,
+  ChevronRight,
+  MessageCircle,
+} from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export default function DashboardPage() {
   const upcomingBookings = [
-    { id: 1, name: 'María García', service: 'Cejas', date: 'Martes 11 Jun', time: '12:00', phone: '+549261000000' },
-    { id: 2, name: 'Lucía Pérez', service: 'Tatuaje', date: 'Miércoles 12 Jun', time: '15:30', phone: '+549261000001' },
-    { id: 3, name: 'Ana Belén', service: 'Labios', date: 'Viernes 14 Jun', time: '10:00', phone: '+549261000002' },
+    {
+      id: 1,
+      name: "María García",
+      service: "Cejas",
+      date: "Martes 11 Jun",
+      time: "12:00",
+      phone: "+549261000000",
+    },
+    {
+      id: 2,
+      name: "Lucía Pérez",
+      service: "Tatuaje",
+      date: "Miércoles 12 Jun",
+      time: "15:30",
+      phone: "+549261000001",
+    },
+    {
+      id: 3,
+      name: "Ana Belén",
+      service: "Labios",
+      date: "Viernes 14 Jun",
+      time: "10:00",
+      phone: "+549261000002",
+    },
   ];
 
   return (
@@ -20,18 +50,18 @@ export default function DashboardPage() {
 
         <nav className="flex-grow space-y-2">
           {[
-            { label: 'Calendario', icon: CalendarIcon, active: true },
-            { label: 'Reservas', icon: Users },
-            { label: 'Horarios', icon: Clock },
-            { label: 'Ajustes', icon: Settings },
+            { label: "Calendario", icon: CalendarIcon, active: true },
+            { label: "Reservas", icon: Users },
+            { label: "Horarios", icon: Clock },
+            { label: "Ajustes", icon: Settings },
           ].map((item) => (
             <button
               key={item.label}
               className={cn(
                 "w-full flex items-center gap-4 px-4 py-3 rounded-sm text-xs uppercase tracking-widest transition-all",
-                item.active 
-                  ? "bg-gold text-ink font-bold" 
-                  : "text-mist hover:text-bone hover:bg-ash"
+                item.active
+                  ? "bg-gold text-ink font-bold"
+                  : "text-mist hover:text-bone hover:bg-ash",
               )}
             >
               <item.icon size={18} />
@@ -50,7 +80,9 @@ export default function DashboardPage() {
       <main className="flex-grow p-8 md:p-12 overflow-y-auto">
         <header className="flex justify-between items-end mb-12">
           <div>
-            <p className="text-[10px] uppercase tracking-[0.3em] text-gold mb-2 font-bold">Resumen de hoy</p>
+            <p className="text-[10px] uppercase tracking-[0.3em] text-gold mb-2 font-bold">
+              Resumen de hoy
+            </p>
             <h1 className="text-display text-white">Martes 11 de Junio</h1>
           </div>
         </header>
@@ -59,21 +91,31 @@ export default function DashboardPage() {
           {/* Calendar Management Placeholder */}
           <div className="bg-charcoal border border-smoke p-8 rounded-sm">
             <div className="flex justify-between items-center mb-8">
-              <h3 className="font-display text-xl text-white">Disponibilidad</h3>
+              <h3 className="font-display text-xl text-white">
+                Disponibilidad
+              </h3>
               <div className="flex gap-2">
-                <button className="p-2 hover:bg-ash rounded-full text-mist transition-colors"><ChevronLeft size={20}/></button>
-                <button className="p-2 hover:bg-ash rounded-full text-mist transition-colors"><ChevronRight size={20}/></button>
+                <button className="p-2 hover:bg-ash rounded-full text-mist transition-colors">
+                  <ChevronLeft size={20} />
+                </button>
+                <button className="p-2 hover:bg-ash rounded-full text-mist transition-colors">
+                  <ChevronRight size={20} />
+                </button>
               </div>
             </div>
-            
+
             <div className="grid grid-cols-7 gap-2 mb-8 text-center text-[10px] uppercase tracking-widest text-mist">
-              {['D', 'L', 'M', 'M', 'J', 'V', 'S'].map(d => <div key={d}>{d}</div>)}
+              {["D", "L", "M", "M", "J", "V", "S"].map((d) => (
+                <div key={d}>{d}</div>
+              ))}
               {Array.from({ length: 31 }).map((_, i) => (
-                <button 
-                  key={i} 
+                <button
+                  key={i}
                   className={cn(
                     "aspect-square flex items-center justify-center text-sm rounded-sm transition-all",
-                    i === 10 ? "bg-gold text-ink font-bold" : "hover:bg-ash text-bone"
+                    i === 10
+                      ? "bg-gold text-ink font-bold"
+                      : "hover:bg-ash text-bone",
                   )}
                 >
                   {i + 1}
@@ -82,10 +124,15 @@ export default function DashboardPage() {
             </div>
 
             <div className="space-y-4 pt-6 border-t border-smoke">
-              <p className="text-[10px] uppercase tracking-widest text-mist">Horarios Martes 11</p>
+              <p className="text-[10px] uppercase tracking-widest text-mist">
+                Horarios Martes 11
+              </p>
               <div className="flex flex-wrap gap-2">
-                {['10:00', '12:00', '15:30', '18:00'].map(t => (
-                  <div key={t} className="px-4 py-2 bg-ash border border-smoke text-xs text-bone rounded-full flex items-center gap-2">
+                {["10:00", "12:00", "15:30", "18:00"].map((t) => (
+                  <div
+                    key={t}
+                    className="px-4 py-2 bg-ash border border-smoke text-xs text-bone rounded-full flex items-center gap-2"
+                  >
                     {t}
                     <span className="w-1.5 h-1.5 rounded-full bg-gold shadow-[0_0_8px_var(--color-gold)]" />
                   </div>
@@ -99,16 +146,27 @@ export default function DashboardPage() {
 
           {/* Upcoming Bookings */}
           <div className="space-y-6">
-            <h3 className="font-display text-xl text-white mb-8">Próximos Turnos</h3>
+            <h3 className="font-display text-xl text-white mb-8">
+              Próximos Turnos
+            </h3>
             <div className="space-y-4">
               {upcomingBookings.map((booking) => (
-                <div key={booking.id} className="bg-ash/50 border border-smoke p-6 rounded-sm flex justify-between items-center group hover:border-gold/50 transition-colors">
+                <div
+                  key={booking.id}
+                  className="bg-ash/50 border border-smoke p-6 rounded-sm flex justify-between items-center group hover:border-gold/50 transition-colors"
+                >
                   <div>
-                    <p className="text-[10px] uppercase tracking-widest text-gold mb-1 font-bold">{booking.date} · {booking.time}</p>
-                    <p className="text-bone font-medium text-lg">{booking.name}</p>
-                    <p className="text-xs text-mist uppercase tracking-widest mt-1">{booking.service}</p>
+                    <p className="text-[10px] uppercase tracking-widest text-gold mb-1 font-bold">
+                      {booking.date} · {booking.time}
+                    </p>
+                    <p className="text-bone font-medium text-lg">
+                      {booking.name}
+                    </p>
+                    <p className="text-xs text-mist uppercase tracking-widest mt-1">
+                      {booking.service}
+                    </p>
                   </div>
-                  <a 
+                  <a
                     href={`https://wa.me/${booking.phone}`}
                     className="p-3 bg-smoke hover:bg-gold hover:text-ink text-bone transition-all rounded-full"
                     title="Enviar WhatsApp"

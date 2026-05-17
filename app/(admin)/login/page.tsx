@@ -1,23 +1,27 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { LogIn } from 'lucide-react';
+import { useState } from "react";
+import { LogIn } from "lucide-react";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Login attempt:', { email, password });
+    console.log("Login attempt:", { email, password });
   };
 
   return (
     <div className="min-h-screen bg-ink flex items-center justify-center px-6">
       <div className="w-full max-w-md bg-charcoal p-10 border border-smoke rounded-sm shadow-2xl">
         <div className="text-center mb-10">
-          <h1 className="font-display text-3xl text-white mb-2">Meli Pedraza</h1>
-          <p className="text-mist text-xs uppercase tracking-widest font-medium">Panel de Artista</p>
+          <h1 className="font-display text-3xl text-white mb-2">
+            Meli Pedraza
+          </h1>
+          <p className="text-mist text-xs uppercase tracking-widest font-medium">
+            Panel de Artista
+          </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
