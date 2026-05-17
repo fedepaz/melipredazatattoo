@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { fadeUp } from '@/lib/motion';
-import { cn } from '@/lib/utils';
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { fadeUp } from "@/lib/motion";
+import { cn } from "@/lib/utils";
 
 interface ServiceSpreadProps {
   title: string;
@@ -13,28 +13,30 @@ interface ServiceSpreadProps {
   details: { label: string; value: string }[];
   imageSrc: string;
   isReversed?: boolean;
-  theme?: 'obsidian' | 'linen';
+  theme?: "obsidian" | "linen";
 }
 
-const ServiceSpread = ({ 
-  title, 
-  category, 
-  description, 
-  details, 
-  imageSrc, 
+const ServiceSpread = ({
+  title,
+  category,
+  description,
+  details,
+  imageSrc,
   isReversed,
-  theme = 'obsidian'
+  theme = "obsidian",
 }: ServiceSpreadProps) => {
   return (
-    <div className={cn(
-      "flex flex-col lg:flex-row items-stretch min-h-[80vh]",
-      isReversed && "lg:flex-row-reverse"
-    )}>
+    <div
+      className={cn(
+        "flex flex-col lg:flex-row items-stretch min-h-[80vh]",
+        isReversed && "lg:flex-row-reverse",
+      )}
+    >
       {/* Image Half */}
       <div className="w-full lg:w-1/2 relative min-h-[50vh] lg:min-h-0 overflow-hidden group">
         <Image
           src={imageSrc}
-          alt={title.replace('<br/>', ' ')}
+          alt={title.replace("<br/>", " ")}
           fill
           className="object-cover transition-transform duration-1000 group-hover:scale-110"
           sizes="(max-width: 1024px) 100vw, 50vw"
@@ -43,26 +45,28 @@ const ServiceSpread = ({
       </div>
 
       {/* Content Half */}
-      <motion.div 
+      <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
         variants={fadeUp}
         className={cn(
           "w-full lg:w-1/2 p-8 md:p-12 lg:p-32 flex flex-col justify-center",
-          theme === 'linen' ? "bg-linen text-obsidian" : "bg-charcoal text-bone"
+          theme === "linen"
+            ? "bg-linen text-obsidian"
+            : "bg-charcoal text-bone",
         )}
       >
         <p className="label-tech mb-6 text-gold">{category}</p>
-        
-        <h3 
+
+        <h3
           className={cn(
             "text-[clamp(2.5rem,6vw,5rem)] leading-[0.9] mb-8 lg:mb-12",
-            theme === 'linen' ? "text-obsidian" : "text-white"
+            theme === "linen" ? "text-obsidian" : "text-white",
           )}
           dangerouslySetInnerHTML={{ __html: title }}
         />
-        
+
         <p className="font-body text-base lg:text-xl mb-12 lg:mb-16 leading-relaxed opacity-90 max-w-lg">
           {description}
         </p>
@@ -76,18 +80,20 @@ const ServiceSpread = ({
           ))}
         </div>
 
-        <Link 
+        <Link
           href="/booking"
           className={cn(
             "group flex items-center gap-4 lg:gap-6 text-xs uppercase tracking-[0.3em] font-bold transition-all",
-            theme === 'linen' ? "text-obsidian" : "text-gold"
+            theme === "linen" ? "text-obsidian" : "text-gold",
           )}
         >
           <span>Consultar disponibilidad</span>
-          <div className={cn(
-            "w-8 lg:w-12 h-px transition-all duration-500 group-hover:w-20",
-            theme === 'linen' ? "bg-obsidian" : "bg-gold"
-          )} />
+          <div
+            className={cn(
+              "w-8 lg:w-12 h-px transition-all duration-500 group-hover:w-20",
+              theme === "linen" ? "bg-obsidian" : "bg-gold",
+            )}
+          />
         </Link>
       </motion.div>
     </div>
@@ -104,10 +110,10 @@ export default function ServicesSection() {
         imageSrc="https://images.unsplash.com/photo-1595152431008-886ec327f1c1?auto=format&fit=crop&q=80&w=1200"
         theme="linen"
         details={[
-          { label: 'Método', value: 'Fine-Stroke' },
-          { label: 'Pigmento', value: 'Mineral-Core' },
-          { label: 'Sesión', value: '180 min' },
-          { label: 'Vida', value: '1.5 años' }
+          { label: "Método", value: "Fine-Stroke" },
+          { label: "Pigmento", value: "Mineral-Core" },
+          { label: "Sesión", value: "180 min" },
+          { label: "Vida", value: "1.5 años" },
         ]}
       />
 
@@ -118,10 +124,10 @@ export default function ServicesSection() {
         imageSrc="https://images.unsplash.com/photo-1586790170054-2c6330bc981c?auto=format&fit=crop&q=80&w=1200"
         isReversed
         details={[
-          { label: 'Técnica', value: 'Aquarelle' },
-          { label: 'Saturación', value: 'Sutil' },
-          { label: 'Cuidado', value: '7 días' },
-          { label: 'Mantenimiento', value: 'Bianual' }
+          { label: "Técnica", value: "Aquarelle" },
+          { label: "Saturación", value: "Sutil" },
+          { label: "Cuidado", value: "7 días" },
+          { label: "Mantenimiento", value: "Bianual" },
         ]}
       />
 
@@ -131,10 +137,10 @@ export default function ServicesSection() {
         description="El arte corporal como una extensión del alma. Composiciones botánicas y minimalismo gráfico ejecutados con estándares de galería."
         imageSrc="https://images.unsplash.com/photo-1590212151175-e58edd96185b?auto=format&fit=crop&q=80&w=1200"
         details={[
-          { label: 'Estilo', value: 'Botánico' },
-          { label: 'Aguja', value: 'Single-Needle' },
-          { label: 'Estudio', value: 'Privado' },
-          { label: 'Curación', value: 'Pro-Assist' }
+          { label: "Estilo", value: "Botánico" },
+          { label: "Aguja", value: "Single-Needle" },
+          { label: "Estudio", value: "Privado" },
+          { label: "Curación", value: "Pro-Assist" },
         ]}
       />
     </section>
