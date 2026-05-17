@@ -107,7 +107,7 @@ export default function ServicesSection() {
         category="Editorial Micro // 01"
         title="Diseño de<br/>Mirada"
         description="Nuestra técnica de micropigmentación de cejas redefine la estructura facial con una precisión hiper-realista. Buscamos la armonía orgánica, no la perfección artificial."
-        imageSrc="https://images.unsplash.com/photo-1595152431008-886ec327f1c1?auto=format&fit=crop&q=80&w=1200"
+        imageSrc="https://images.unsplash.com/photo-1618517351616-38fb9c5210c6?auto=format&fit=crop&q=80&w=1200"
         theme="linen"
         details={[
           { label: "Método", value: "Fine-Stroke" },
@@ -121,7 +121,7 @@ export default function ServicesSection() {
         category="Editorial Micro // 02"
         title="Pigmentación<br/>Labial"
         description="Color y simetría destilados. Una infusión de pigmento que devuelve la vitalidad natural a los labios, creando un efecto de volumen y definition atemporal."
-        imageSrc="https://images.unsplash.com/photo-1586790170054-2c6330bc981c?auto=format&fit=crop&q=80&w=1200"
+        imageSrc="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&q=80&w=1200"
         isReversed
         details={[
           { label: "Técnica", value: "Aquarelle" },
