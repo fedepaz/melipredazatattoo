@@ -64,17 +64,21 @@ Agents must **always read and apply** the following project guides:
 1. `docs/agents/frontend-agent-output.md`
 2. `docs/agents/product-manager-output.md`
 3. `docs/agents/uxui-designer-output.md`
+4. `docs/agents/devops-agent-output.md`
 
 ---
 
 ## ⚖️ Rules of Engagement
 
 - **Do not invent tech.** Only use tools defined in `tech_stack_guide.md`.
-- \***\*Default Stack**: `Next.js 15 (App Router) + React Server Components + Tailwind CSS + shadcn/ui + Supabase (Postgres, Auth, RLS)`.
+- **Default Stack**: `Next.js 15 (App Router) + React Server Components + Tailwind CSS v4 + shadcn/ui + Supabase (Postgres, Auth, RLS)`.
 - **Architecture**: Single Next.js application. **No separate backend server**. All data mutations, auth checks, and booking logic run via Next.js Server Actions or Route Handlers.
 - **Database Security**:
   - Client-side uses Supabase `anon` key + strict Row-Level Security (RLS).
   - Server-side uses `service_role` key **only** inside `use server` functions, middleware, or Route Handlers. Never exposed to the browser.
+- **Secret Management**:
+  - Never commit `.env` files or secrets.
+  - Production secrets are managed strictly via Vercel Environment Variables.
 - **Deployment**: Vercel (zero-config). Custom domain + automatic preview deployments.
 
 ---
@@ -82,9 +86,10 @@ Agents must **always read and apply** the following project guides:
 ## 🛠️ Development Standards
 
 - **Repository Structure**: Single app (no monorepo, no workspaces).
-- **Package Manager**: `pnpm` (recommended) or `npm`.
+- **Package Manager**: `pnpm` (recommended).
 - **Local Quality Gates**: ESLint (Next.js config), Prettier, TypeScript strict mode.
-- **Git Hooks**: Husky + `commitlint` enforcing Conventional Commits.
+- **Git Hooks**: Husky + `commitlint` enforcing **Conventional Commits** (mandated by DevOps agent).
+- **Supabase Migrations**: Never edit the production schema via the Supabase Dashboard. All changes must be made via migration files (`supabase migration new`) and pushed via the CLI.
 - **State Management**: React Server Components + URL search params + Supabase real-time (no Redux/Zustand unless explicitly justified).
 - **Validation**: `Zod` for all form inputs, Server Action payloads, and API contracts.
 

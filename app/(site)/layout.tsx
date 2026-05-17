@@ -1,3 +1,5 @@
+// app/(site)/layout.tsx
+
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 
@@ -9,9 +11,7 @@ export default function SiteLayout({
   return (
     <div className="flex flex-col min-h-screen bg-ink">
       <Navbar />
-      <main className="flex-grow">
-        {children}
-      </main>
+      <main className="grow">{children}</main>
       <Footer />
     </div>
   );

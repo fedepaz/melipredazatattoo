@@ -9,11 +9,9 @@ export default function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
-    // Force direct storage access if next-themes gets stuck
-    const saved = localStorage.getItem('theme');
-    if (saved) setTheme(saved);
-  }, [setTheme]);
+  }, []);
 
   if (!mounted) return <div className="p-2 w-9 h-9" />;
 
