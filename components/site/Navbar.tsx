@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import ThemeToggle from './ThemeToggle';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -20,61 +21,68 @@ export default function Navbar() {
   return (
     <nav
       className={cn(
-        'fixed top-0 left-0 w-full z-50 transition-all duration-500',
+        'fixed top-0 left-0 w-full z-50 transition-all duration-700',
         isScrolled 
-          ? 'py-4 bg-ash/80 backdrop-blur-xl border-b border-smoke' 
-          : 'py-8 bg-transparent'
+          ? 'py-6 bg-obsidian/80 backdrop-blur-2xl border-b border-smoke/20' 
+          : 'py-10 bg-transparent'
       )}
     >
-      <div className="max-w-(--content-max) mx-auto px-6 flex justify-between items-center">
+      <div className="max-w-[1800px] mx-auto px-12 flex justify-between items-center text-xs uppercase tracking-[0.2em] font-medium">
         <Link 
           href="/" 
-          className="font-display text-2xl text-white tracking-tight hover:text-gold transition-colors duration-300"
+          className="font-display text-2xl text-bone tracking-tighter normal-case"
         >
-          Meli Pedraza
+          Obsidian<span className="text-gold italic">Atelier</span>
         </Link>
         
         {/* Desktop Nav */}
-        <div className="hidden md:flex gap-10 items-center text-xs uppercase tracking-[0.2em] text-mist font-medium">
-          <Link href="/#trabajo" className="hover:text-gold transition-colors duration-300 cursor-pointer">Trabajo</Link>
-          <Link href="/#servicios" className="hover:text-gold transition-colors duration-300 cursor-pointer">Servicios</Link>
-          <Link href="/#sobre-mi" className="hover:text-gold transition-colors duration-300 cursor-pointer">Sobre mí</Link>
+        <div className="hidden md:flex gap-12 items-center text-mist">
+          <Link href="/#trabajo" className="hover:text-gold transition-colors duration-300">Portafolio</Link>
+          <Link href="/#servicios" className="hover:text-gold transition-colors duration-300">Servicios</Link>
+          <Link href="/#sobre-mi" className="hover:text-gold transition-colors duration-300">Estudio</Link>
+          <ThemeToggle />
           <Link 
             href="/booking" 
-            className="text-bone hover:text-gold transition-colors duration-300 px-5 py-2 border border-smoke hover:border-gold rounded-sm cursor-pointer"
+            className="text-white bg-gold/10 hover:bg-gold hover:text-obsidian px-6 py-2 border border-gold/30 rounded-sm transition-all duration-500"
           >
-            Turno
+            Aplicar
           </Link>
         </div>
         
         {/* Mobile Toggle */}
-        <button 
-          className="md:hidden text-bone p-2 hover:bg-smoke rounded-full transition-colors cursor-pointer"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="flex items-center gap-6 md:hidden">
+          <ThemeToggle />
+          <button 
+            className="text-white"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu Overlay */}
       <div 
         className={cn(
-          'fixed inset-0 bg-ink z-40 md:hidden transition-transform duration-500 ease-in-out pt-32 px-10',
-          mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          'fixed inset-0 bg-obsidian z-40 md:hidden transition-all duration-500 ease-in-out pt-32 px-12',
+          mobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'
         )}
       >
-        <div className="flex flex-col gap-8 text-2xl font-display text-white">
+        <div className="flex flex-col gap-10 text-4xl font-display text-bone">
           <Link href="/#trabajo" onClick={() => setMobileMenuOpen(false)}>Trabajo</Link>
           <Link href="/#servicios" onClick={() => setMobileMenuOpen(false)}>Servicios</Link>
-          <Link href="/#sobre-mi" onClick={() => setMobileMenuOpen(false)}>Sobre mí</Link>
+          <Link href="/#sobre-mi" onClick={() => setMobileMenuOpen(false)}>Estudio</Link>
           <Link 
             href="/booking" 
-            className="text-gold pt-4 border-t border-smoke"
+            className="text-gold mt-6 pt-6 border-t border-smoke/30"
             onClick={() => setMobileMenuOpen(false)}
           >
-            Reservar Turno
+            Aplicar ahora
           </Link>
+          
+          <div className="mt-12 flex gap-6">
+            <p className="label-tech">Meli Pedraza © 2026</p>
+          </div>
         </div>
       </div>
     </nav>

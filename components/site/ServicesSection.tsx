@@ -13,7 +13,7 @@ interface ServiceSpreadProps {
   details: { label: string; value: string }[];
   imageSrc: string;
   isReversed?: boolean;
-  accentColor?: string;
+  theme?: 'obsidian' | 'linen';
 }
 
 const ServiceSpread = ({ 
@@ -23,22 +23,23 @@ const ServiceSpread = ({
   details, 
   imageSrc, 
   isReversed,
-  accentColor 
+  theme = 'obsidian'
 }: ServiceSpreadProps) => {
   return (
     <div className={cn(
-      "flex flex-col md:flex-row items-center",
-      isReversed && "md:flex-row-reverse"
+      "flex flex-col lg:flex-row items-stretch min-h-[80vh]",
+      isReversed && "lg:flex-row-reverse"
     )}>
       {/* Image Half */}
-      <div className="w-full md:w-1/2 h-[50vh] md:h-[80vh] relative overflow-hidden">
+      <div className="w-full lg:w-1/2 relative min-h-[50vh] lg:min-h-0 overflow-hidden group">
         <Image
           src={imageSrc}
-          alt={title}
+          alt={title.replace('<br/>', ' ')}
           fill
-          className="object-cover transition-transform duration-1000 hover:scale-105"
-          sizes="50vw"
+          className="object-cover transition-transform duration-1000 group-hover:scale-110"
+          sizes="(max-width: 1024px) 100vw, 50vw"
         />
+        <div className="absolute inset-0 bg-obsidian/20" />
       </div>
 
       {/* Content Half */}
@@ -48,41 +49,29 @@ const ServiceSpread = ({
         viewport={{ once: true, margin: "-100px" }}
         variants={fadeUp}
         className={cn(
-          "w-full md:w-1/2 p-12 md:p-24 flex flex-col justify-center bg-charcoal",
-          accentColor === 'cream' && "bg-cream text-ink"
+          "w-full lg:w-1/2 p-8 md:p-12 lg:p-32 flex flex-col justify-center",
+          theme === 'linen' ? "bg-linen text-obsidian" : "bg-charcoal text-bone"
         )}
       >
-        <span className={cn(
-          "text-xs uppercase tracking-[0.3em] mb-4 font-medium",
-          accentColor === 'cream' ? "text-mist" : "text-gold"
-        )}>
-          {category}
-        </span>
+        <p className="label-tech mb-6 text-gold">{category}</p>
         
-        <h3 className={cn(
-          "text-display mb-8",
-          accentColor === 'cream' ? "text-ink" : "text-white"
-        )}>
-          {title}
-        </h3>
+        <h3 
+          className={cn(
+            "text-[clamp(2.5rem,6vw,5rem)] leading-[0.9] mb-8 lg:mb-12",
+            theme === 'linen' ? "text-obsidian" : "text-white"
+          )}
+          dangerouslySetInnerHTML={{ __html: title }}
+        />
         
-        <p className={cn(
-          "text-lg mb-12 leading-relaxed opacity-90",
-          accentColor === 'cream' ? "text-ink/80" : "text-bone"
-        )}>
+        <p className="font-body text-base lg:text-xl mb-12 lg:mb-16 leading-relaxed opacity-90 max-w-lg">
           {description}
         </p>
 
-        <div className="grid grid-cols-2 gap-8 mb-12">
+        <div className="grid grid-cols-2 gap-x-8 lg:gap-x-12 gap-y-6 lg:gap-y-8 mb-12 lg:mb-16 border-t border-smoke/20 pt-8 lg:pt-12">
           {details.map((detail, idx) => (
             <div key={idx}>
-              <p className={cn(
-                "text-[10px] uppercase tracking-widest mb-1",
-                accentColor === 'cream' ? "text-mist" : "text-gold"
-              )}>
-                {detail.label}
-              </p>
-              <p className="font-medium">{detail.value}</p>
+              <p className="label-tech mb-1 lg:mb-2">{detail.label}</p>
+              <p className="font-accent text-lg lg:text-xl">{detail.value}</p>
             </div>
           ))}
         </div>
@@ -90,13 +79,15 @@ const ServiceSpread = ({
         <Link 
           href="/booking"
           className={cn(
-            "inline-block border px-8 py-4 uppercase text-xs tracking-[0.2em] font-bold transition-all duration-300 w-fit",
-            accentColor === 'cream' 
-              ? "border-ink text-ink hover:bg-ink hover:text-white" 
-              : "border-gold text-gold hover:bg-gold hover:text-ink"
+            "group flex items-center gap-4 lg:gap-6 text-xs uppercase tracking-[0.3em] font-bold transition-all",
+            theme === 'linen' ? "text-obsidian" : "text-gold"
           )}
         >
-          Reservar turno →
+          <span>Consultar disponibilidad</span>
+          <div className={cn(
+            "w-8 lg:w-12 h-px transition-all duration-500 group-hover:w-20",
+            theme === 'linen' ? "bg-obsidian" : "bg-gold"
+          )} />
         </Link>
       </motion.div>
     </div>
@@ -105,45 +96,45 @@ const ServiceSpread = ({
 
 export default function ServicesSection() {
   return (
-    <section id="servicios" className="bg-ink overflow-hidden">
+    <section id="servicios" className="bg-obsidian overflow-hidden">
       <ServiceSpread
-        category="Estética Facial"
-        title="Micropigmentación de Cejas"
-        description="Técnica avanzada para definir y realzar la mirada de forma natural. Utilizamos pigmentos orgánicos de alta calidad adaptados a tu tono de piel y vello."
+        category="Editorial Micro // 01"
+        title="Diseño de<br/>Mirada"
+        description="Nuestra técnica de micropigmentación de cejas redefine la estructura facial con una precisión hiper-realista. Buscamos la armonía orgánica, no la perfección artificial."
         imageSrc="https://images.unsplash.com/photo-1595152431008-886ec327f1c1?auto=format&fit=crop&q=80&w=1200"
-        accentColor="cream"
+        theme="linen"
         details={[
-          { label: 'Técnica', value: 'Microblading / Shading' },
-          { label: 'Duración', value: '2 a 3 horas' },
-          { label: 'Curación', value: '7 a 10 días' },
-          { label: 'Efecto', value: '12 a 18 meses' }
+          { label: 'Método', value: 'Fine-Stroke' },
+          { label: 'Pigmento', value: 'Mineral-Core' },
+          { label: 'Sesión', value: '180 min' },
+          { label: 'Vida', value: '1.5 años' }
         ]}
       />
 
       <ServiceSpread
-        category="Estética Facial"
-        title="Micropigmentación de Labios"
-        description="Dale vida, color y simetría a tus labios. Una técnica sutil para un aspecto saludable y definido que resalta tu belleza natural todos los días."
+        category="Editorial Micro // 02"
+        title="Pigmentación<br/>Labial"
+        description="Color y simetría destilados. Una infusión de pigmento que devuelve la vitalidad natural a los labios, creando un efecto de volumen y definition atemporal."
         imageSrc="https://images.unsplash.com/photo-1586790170054-2c6330bc981c?auto=format&fit=crop&q=80&w=1200"
         isReversed
         details={[
-          { label: 'Técnica', value: 'Aquarelle Lips' },
-          { label: 'Duración', value: '2 horas' },
-          { label: 'Curación', value: '5 a 7 días' },
-          { label: 'Efecto', value: '1 a 2 años' }
+          { label: 'Técnica', value: 'Aquarelle' },
+          { label: 'Saturación', value: 'Sutil' },
+          { label: 'Cuidado', value: '7 días' },
+          { label: 'Mantenimiento', value: 'Bianual' }
         ]}
       />
 
       <ServiceSpread
-        category="Arte Corporal"
-        title="Tatuajes Personalizados"
-        description="Diseños únicos que cuentan tu historia. Especialidad en líneas finas, micro-realismo y composiciones botánicas con un enfoque artístico y delicado."
+        category="Contemporary Ink // 03"
+        title="Tatuaje de<br/>Línea Fina"
+        description="El arte corporal como una extensión del alma. Composiciones botánicas y minimalismo gráfico ejecutados con estándares de galería."
         imageSrc="https://images.unsplash.com/photo-1590212151175-e58edd96185b?auto=format&fit=crop&q=80&w=1200"
         details={[
-          { label: 'Estilos', value: 'Fine Line / Blackwork' },
-          { label: 'Consulta', value: 'Vía WhatsApp' },
-          { label: 'Higiene', value: 'Estándar Hospitalario' },
-          { label: 'Cuidado', value: 'Seguimiento personalizado' }
+          { label: 'Estilo', value: 'Botánico' },
+          { label: 'Aguja', value: 'Single-Needle' },
+          { label: 'Estudio', value: 'Privado' },
+          { label: 'Curación', value: 'Pro-Assist' }
         ]}
       />
     </section>

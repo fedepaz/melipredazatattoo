@@ -6,26 +6,30 @@ import { fadeUp } from '@/lib/motion';
 
 export default function AboutSection() {
   return (
-    <section id="sobre-mi" className="py-24 px-6 bg-ink overflow-hidden">
-      <div className="max-w-(--content-max) mx-auto">
-        <div className="flex flex-col md:flex-row items-center gap-16 md:gap-24">
-          {/* Artist Photo */}
+    <section id="sobre-mi" className="py-48 px-12 bg-obsidian overflow-hidden">
+      <div className="max-w-[1800px] mx-auto">
+        <div className="flex flex-col lg:flex-row items-center gap-24 lg:gap-48">
+          {/* Artist Photo - Museum Frame */}
           <motion.div 
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="w-full md:w-[40%] aspect-[3/4] relative"
+            className="w-full lg:w-[35%] relative"
           >
-            <div className="absolute inset-0 border border-gold translate-x-4 translate-y-4 z-0" />
-            <div className="relative z-10 w-full h-full overflow-hidden">
+            <div className="aspect-[3/4] relative overflow-hidden bg-ash">
               <Image
                 src="https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?auto=format&fit=crop&q=80&w=800"
                 alt="Meli Pedraza - Artist"
                 fill
-                className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                sizes="(max-width: 768px) 100vw, 40vw"
+                className="object-cover grayscale hover:grayscale-0 transition-all duration-1000"
+                sizes="(max-width: 768px) 100vw, 35vw"
               />
+            </div>
+            {/* Museum Label */}
+            <div className="absolute -bottom-12 -right-8 bg-charcoal p-6 border border-smoke/30 shadow-2xl hidden md:block">
+              <p className="label-tech text-gold mb-1">Autor</p>
+              <p className="font-display text-white italic">Meli Pedraza, b. 1994</p>
             </div>
           </motion.div>
 
@@ -35,38 +39,33 @@ export default function AboutSection() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="w-full md:w-[60%] flex flex-col justify-center"
+            className="w-full lg:w-[50%] flex flex-col justify-center"
           >
-            <span className="text-xs uppercase tracking-[0.4em] text-mist mb-4 font-medium">
-              La artista
-            </span>
+            <p className="label-tech mb-8 text-gold">Manifesto Artístico</p>
             
-            <h2 className="text-display text-white mb-8">
-              Meli Pedraza
+            <h2 className="text-[clamp(3.5rem,8vw,7rem)] leading-none text-white mb-12">
+              La Piel<br/>como<br/>Lienzo
             </h2>
             
-            <div className="w-20 h-px bg-gold mb-8" />
-            
-            <div className="space-y-6 text-lg text-bone opacity-90 leading-relaxed">
+            <div className="space-y-8 text-xl text-bone opacity-80 leading-relaxed font-body">
               <p>
-                Con más de 8 años de experiencia en el mundo del arte corporal, mi enfoque se centra en la sutileza y la elegancia de cada trazo. Creo firmemente que cada tatuaje y cada procedimiento de micropigmentación es una colaboración artística única.
+                En el Obsidian Atelier, entendemos que cada marca en la piel es una narrativa silenciosa. Mi práctica se aleja de lo convencional para abrazar un enfoque editorial, donde la precisión técnica se encuentra con la intuición artística.
               </p>
               <p>
-                Especializada en técnicas de línea fina y micro-realismo, busco siempre resaltar la belleza natural de mis clientes, ya sea a través de un diseño botánico delicado o realzando los rasgos faciales con precisión milimétrica.
-              </p>
-              <p>
-                Mi estudio es un espacio de calma y profesionalismo, donde la higiene y el cuidado del detalle son mi máxima prioridad. Cada sesión es una experiencia dedicada a transformar tu visión en una obra de arte duradera.
+                Con una especialización en micro-realismo y estética facial avanzada, mi objetivo es destilar la esencia de la belleza natural, creando piezas que no solo decoran, sino que elevan la presencia de quien las porta.
               </p>
             </div>
 
-            <div className="mt-12 flex flex-wrap gap-4">
-              {['Certificación Internacional', 'Higiene Hospitalaria', 'Insumos Vegan-Friendly'].map((tag) => (
-                <span 
-                  key={tag}
-                  className="px-4 py-2 bg-ash border border-smoke text-xs uppercase tracking-widest text-mist rounded-sm"
-                >
-                  {tag}
-                </span>
+            <div className="mt-16 flex flex-wrap gap-x-12 gap-y-6">
+              {[
+                { label: 'Certificación', val: 'Elite Academy' },
+                { label: 'Estandar', val: 'Bio-Safety+' },
+                { label: 'Ubicación', val: 'Estudio Privado' }
+              ].map((spec) => (
+                <div key={spec.label}>
+                  <p className="label-tech mb-1">{spec.label}</p>
+                  <p className="text-sm font-mono text-mist">{spec.val}</p>
+                </div>
               ))}
             </div>
           </motion.div>

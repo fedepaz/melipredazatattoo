@@ -1,31 +1,24 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* === BASE VARIABLES === */
 :root {
-  /* === CORE PALETTE (Converted to OKLCH) === */
-  --color-ink: oklch(12.72% 0.006 286.37);      /* #0A0A0A */
-  --color-charcoal: oklch(16.92% 0.005 286.37); /* #141414 */
-  --color-ash: oklch(21.03% 0.004 286.37);      /* #1e1e1e */
-  --color-smoke: oklch(26.47% 0.003 286.37);    /* #2a2a2a */
-  --color-mist: oklch(49.88% 0.002 286.37);     /* #6b6b6b */
-  --color-bone: oklch(90.15% 0.015 76.53);      /* #e8e0d5 */
-  --color-white: oklch(95.6% 0.005 76.53);       /* #f5f2ee */
+  --color-obsidian: oklch(98% 0.005 76.53);    
+  --color-ink: oklch(95% 0.005 76.53);         
+  --color-charcoal: oklch(90% 0.01 76.53); 
+  --color-ash: oklch(85% 0.01 76.53);      
+  --color-smoke: oklch(80% 0.01 76.53);    
+  --color-mist: oklch(40% 0.01 76.53);     
+  --color-bone: oklch(15% 0.01 76.53);         
+  --color-white: oklch(5% 0.006 286.37);       
+  
+  --color-linen: oklch(15% 0.006 286.37);      
+  --color-clay: oklch(73.53% 0.12 85.38);      
+  
+  --color-gold: oklch(50.41% 0.1 85.38);       
+  --color-gold-dim: oklch(40.41% 0.08 85.38);    
 
-  /* === ACCENT — Main tattoo brand === */
-  --color-gold: oklch(73.53% 0.12 85.38);       /* #c9a84c */
-  --color-gold-dim: oklch(50.41% 0.1 85.38);    /* #8a6b2a */
-
-  /* === MICROPIGMENTATION sub-palette === */
-  --color-blush: oklch(75.52% 0.05 15.62);      /* #d4a0a0 */
-  --color-taupe: oklch(65.82% 0.04 76.53);      /* #a89070 */
-  --color-cream: oklch(93.41% 0.02 76.53);      /* #f0e8de */
-
-  /* === FUNCTIONAL === */
-  --color-success: oklch(74.41% 0.16 140.66);
-  --color-error: oklch(62.67% 0.18 25.94);
-  --color-warning: oklch(81.93% 0.16 71.64);
-  --color-info: oklch(73.5% 0.1 240.24);
-
-  /* === SPACING SCALE (8px base) === */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -36,26 +29,52 @@
   --space-16: 4rem;
   --space-24: 6rem;
   --space-32: 8rem;
-
-  /* === LAYOUT === */
   --content-max: 1280px;
   --content-narrow: 800px;
-  --content-wide: 1440px;
-  --section-padding-y: clamp(4rem, 10vw, 8rem);
+  --content-wide: 1600px;
+  --section-padding-y: clamp(6rem, 15vw, 12rem);
+}
+
+/* === THEME OVERRIDES (Force Application) === */
+html.dark body, 
+html[data-theme='dark'] body {
+  background-color: oklch(10% 0.006 286.37) !important;
+  color: oklch(90.15% 0.015 76.53) !important;
+}
+
+html.dark, 
+[data-theme='dark'] {
+  --color-obsidian: oklch(10% 0.006 286.37) !important;   
+  --color-ink: oklch(12.72% 0.006 286.37) !important;      
+  --color-charcoal: oklch(16.92% 0.005 286.37) !important; 
+  --color-ash: oklch(21.03% 0.004 286.37) !important;      
+  --color-smoke: oklch(26.47% 0.003 286.37) !important;    
+  --color-mist: oklch(49.88% 0.002 286.37) !important;     
+  --color-bone: oklch(90.15% 0.015 76.53) !important;      
+  --color-white: oklch(98% 0.005 76.53) !important;        
+  
+  --color-linen: oklch(92.44% 0.012 85.38) !important;     
+  --color-clay: oklch(65.82% 0.04 76.53) !important;       
+  
+  --color-gold: oklch(73.53% 0.12 85.38) !important;       
+  --color-gold-dim: oklch(50.41% 0.1 85.38) !important;    
 }
 
 @theme {
-  /* Fonts */
   --font-display: var(--font-display);
+  --font-accent: var(--font-accent);
   --font-body: var(--font-body);
   --font-mono: var(--font-mono);
 
-  /* Typography Scale */
-  --text-hero: clamp(3.5rem, 8vw, 7rem);
-  --text-display: clamp(2rem, 4vw, 3.5rem);
-  --text-title: clamp(1.25rem, 2vw, 1.75rem);
+  --text-ultra: clamp(3.5rem, 15vw, 12rem);     
+  --text-display: clamp(2rem, 8vw, 6rem);   
+  --text-accent: clamp(1.25rem, 4vw, 2.5rem);                     
+  --text-body: 1rem;                      
+  --text-label: 10px;                         
 
-  /* Mapping custom properties to tailwind colors */
+  --color-obsidian: var(--color-obsidian);
+  --color-linen: var(--color-linen);
+  --color-clay: var(--color-clay);
   --color-ink: var(--color-ink);
   --color-charcoal: var(--color-charcoal);
   --color-ash: var(--color-ash);
@@ -65,33 +84,44 @@
   --color-white: var(--color-white);
   --color-gold: var(--color-gold);
   --color-gold-dim: var(--color-gold-dim);
-  --color-blush: var(--color-blush);
-  --color-taupe: var(--color-taupe);
-  --color-cream: var(--color-cream);
 }
 
 /* Base Styles */
 body {
-  background-color: var(--color-ink);
+  background-color: var(--color-obsidian);
   color: var(--color-bone);
   font-family: var(--font-body);
+  font-weight: 300;
+  transition: background-color 0.5s ease, color 0.5s ease;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 @layer base {
-  h1, h2, h3, h4, h5, h6 {
+  h1, h2, h3, h4 {
     font-family: var(--font-display);
-    font-weight: 400;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 0.85; 
+  }
+  
+  .label-tech {
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-mist);
   }
 }
 
-/* Motion Accessibility */
-@media (prefers-reduced-motion: reduce) {
-  *, ::before, ::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+/* Custom Cursor */
+.custom-cursor {
+  width: 12px;
+  height: 12px;
+  background-color: var(--color-gold);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 99999;
+  mix-blend-mode: difference;
+  transition: transform 0.15s ease-out;
 }

@@ -11,7 +11,9 @@
 |-------|-----------|-----------|
 | Framework | **Next.js 15** (App Router) | SSR for fast first paint on social traffic, built-in image optimization, file-based routing, middleware auth |
 | Language | **TypeScript** | Type safety for API contracts and component props |
-| Styling | **Tailwind CSS v4** + CSS custom properties | Utility-first with design token layer for artistic overrides |
+| Styling | **Tailwind CSS v4** + OKLCH tokens | "Museumcore" design token layer |
+| Typography | **Syne + Manrope + Geist Mono** | Avant-garde pairing with brutalist mono |
+| Texture | **SVG Filter Grain** | Global tactile noise overlay |
 | Animations | **Framer Motion** | Scroll-triggered reveals, page transitions, gallery interactions |
 | Forms | **React Hook Form** + **Zod** | Booking form validation, type-safe schemas |
 | State | **Zustand** (lightweight) | Booking flow state, admin calendar state |
@@ -124,26 +126,26 @@ tattoo-portfolio/
 ### Typography
 
 ```css
-/* Display font — used for headings, hero text, section titles */
-/* Recommendation: "Cormorant Garamond" (editorial serif) or "PP Editorial New" (italic emphasis) */
---font-display: 'Cormorant Garamond', Georgia, serif;
+/* Display font — Cormorant Garamond (Editorial Serif) */
+--font-display: 'Cormorant Garamond', serif;
 
-/* Body font — used for descriptions, form labels, UI text */
-/* Recommendation: "DM Sans" or "Syne" (geometric, slightly unusual) */
---font-body: 'DM Sans', sans-serif;
+/* Accent font — Syne (Avant-Garde) */
+--font-accent: 'Syne', sans-serif;
 
-/* Accent / monospace — used for labels, badges, timestamps */
---font-mono: 'DM Mono', monospace;
+/* Body font — Manrope (Modern Clean) */
+--font-body: 'Manrope', sans-serif;
+
+/* Technical / Monospace — Geist Mono (Brutalist) */
+--font-mono: 'Geist Mono', monospace;
 ```
 
 **Type Scale:**
 ```css
---text-hero:    clamp(3.5rem, 8vw, 7rem);    /* Hero headline */
---text-display: clamp(2rem, 4vw, 3.5rem);    /* Section titles */
---text-title:   clamp(1.25rem, 2vw, 1.75rem);/* Card/feature titles */
---text-body:    1rem;                          /* Body copy */
---text-small:   0.875rem;                     /* Labels, captions */
---text-xs:      0.75rem;                      /* Badges, meta */
+--text-ultra:   clamp(5rem, 12vw, 10rem);    /* Hero name */
+--text-display: clamp(3rem, 6vw, 5rem);      /* Section titles */
+--text-accent:  2rem;                        /* Syne accents */
+--text-body:    1rem;                        /* Body copy */
+--text-label:   10px;                        /* Geist labels */
 ```
 
 ---
