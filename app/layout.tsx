@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Syne, Manrope, Geist_Mono } from "next/font/google";
+import {
+  Cormorant_Garamond,
+  Syne,
+  Manrope,
+  Geist_Mono,
+} from "next/font/google";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import "./globals.css";
 
@@ -38,8 +43,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html 
-      lang="es" 
+    <html
+      lang="es"
       className={`${displayFont.variable} ${accentFont.variable} ${bodyFont.variable} ${monoFont.variable}`}
       suppressHydrationWarning
     >
@@ -51,10 +56,15 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {/* Global Grain Overlay */}
-          <div className="fixed inset-0 pointer-events-none z-[9999] opacity-[0.04] mix-blend-overlay">
+          <div className="fixed inset-0 pointer-events-none z-9999 opacity-[0.04] mix-blend-overlay">
             <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
               <filter id="noiseFilter">
-                <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
+                <feTurbulence
+                  type="fractalNoise"
+                  baseFrequency="0.65"
+                  numOctaves="3"
+                  stitchTiles="stitch"
+                />
               </filter>
               <rect width="100%" height="100%" filter="url(#noiseFilter)" />
             </svg>

@@ -708,6 +708,7 @@ All UI copy in Argentine Spanish (`vos` form). Warm, direct, never corporate.
 ## Handoff Notes for Frontend Agent
 
 - All color tokens, spacing tokens, and type tokens in this doc match those in `frontend-agent-output.md` exactly. Use CSS custom properties — no hardcoded hex values in components.
+- Hero Section: Use `HeroSection.tsx` as the main hero component.
 - Gallery masonry: use CSS columns or a JS masonry lib (e.g. `react-masonry-css`). Pure CSS columns is simpler but loses scroll-triggered animation control. Decide based on performance budget.
 - Lightbox: implement with Framer Motion `AnimatePresence` + `motion.div`. No third-party lightbox library — keeps bundle lean and gives full style control.
 - Admin UI: no artistic fonts in admin. Use DM Sans exclusively. Only use design tokens — no one-off values.

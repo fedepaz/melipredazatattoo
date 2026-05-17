@@ -138,7 +138,7 @@ export default function Gallery() {
                 />
               </div>
               <div className="mt-8 md:mt-12 text-center max-w-xl">
-                <p className="label-tech text-gold mb-4">{selectedImage.category} // Spec 00{selectedImage.id}</p>
+                <p className="label-tech text-gold mb-4">{selectedImage.category} • Spec 00{selectedImage.id}</p>
                 <h3 className="text-3xl md:text-4xl text-bone mb-4 md:mb-6 leading-none uppercase tracking-tighter italic font-display">{selectedImage.alt}</h3>
                 <p className="text-mist text-xs md:text-sm leading-relaxed px-4">
                   Capturado en el Obsidian Atelier. Cada pieza es un testimonio de la precisión y el compromiso con la estética atemporal.
