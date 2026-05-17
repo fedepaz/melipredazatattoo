@@ -7,22 +7,17 @@
 
 ## Design Vision
 
-### Concept: "La Piel Como Lienzo" *(The Skin as Canvas)*
+### Concept: "The Obsidian Atelier" (Museumcore Editorial)
 
-This site is not a booking platform with a gallery attached. It is a **gallery with a booking flow embedded**. Every design decision starts from that distinction.
-
-The visual language borrows from:
-- High-end tattoo studio editorial sites (dark, dramatic, confident)
-- Luxury beauty brand microsites for micropigmentation (soft, intimate, trustworthy)
-- Art photography portfolios (the work fills the screen — UI disappears)
+This site is not a booking platform with a gallery attached. It is a **curated digital gallery** that feels like a luxury fashion magazine. The visual language is "Museumcore"—aggressive negative space, exaggerated typographic hierarchy, and tactile textures that signal exclusivity and high-end artistry.
 
 **The experience arc a visitor takes:**
-1. **Arrivo** — Struck by full-bleed imagery. Feels like entering a studio.
-2. **Exploración** — Browses work. Builds desire and trust.
-3. **Conexión** — Reads about the artist. Emotional connection formed.
-4. **Acción** — Books. Flow is calm, clear, and fast — doesn't break the mood.
+1. **Museum Entry** — Struck by a single, high-impact macro shot in a vast canvas.
+2. **Curated Browsing** — Asymmetric layouts that guide the eye like an art book.
+3. **The Story** — Deep connection through high-contrast typography and personal narrative.
+4. **The Inquiry** — Not a "Booking", but an "Application" or "Request for Art".
 
-**The one thing visitors remember**: The work felt like art before it felt like a service.
+**The one thing visitors remember**: The site felt like a physical art exhibition.
 
 ---
 
@@ -31,6 +26,15 @@ The visual language borrows from:
 ### 1. Color System
 
 All colors are defined as CSS custom properties in `globals.css` (see frontend doc). This section defines their semantic usage.
+
+#### Nature Distilled Palette (2026 Trends)
+Used to create a warm, high-trust organic environment, especially in micropigmentation sections.
+
+| Token | Hex | Usage |
+|-------|-----|-------|
+| `--color-linen` | `#E8E2D9` | Light section backgrounds (Micropigmentation) |
+| `--color-clay` | `#A89070` | Muted organic accents |
+| `--color-obsidian` | `#080808` | Primary deep background (replaces Ink) |
 
 #### Core Palette
 
@@ -42,7 +46,7 @@ All colors are defined as CSS custom properties in `globals.css` (see frontend d
 | `--color-smoke` | `#2A2A2A` | Borders, dividers, input outlines |
 | `--color-mist` | `#6B6B6B` | Muted/secondary text, placeholders |
 | `--color-bone` | `#E8E0D5` | Primary body text (warm — avoids clinical pure white) |
-| `--color-white` | `#F5F2EE` | High-contrast text, active CTA labels |
+| `--color-white" | `#F5F2EE` | High-contrast text, active CTA labels |
 
 #### Accent — Main Brand
 
@@ -75,35 +79,31 @@ Used exclusively within the Micropigmentation Eyebrows and Lips sections. Create
 - Muted text (`--color-mist` on `--color-ink`): **4.6:1** ✅ WCAG AA minimum
 - Never use `--color-mist` for interactive or critical UI text — only decorative/secondary
 
----
-
-### 2. Typography System
+### 2. Typography System (The Editorial Anchor)
 
 #### Font Stack
-
 ```
-Display:  'Cormorant Garamond', Georgia, serif
-Body:     'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif
-Mono:     'DM Mono', 'Courier New', monospace
+Display:  'Cormorant Garamond', serif (Editorial Serif)
+Accent:   'Syne', sans-serif (Avant-Garde, Bold)
+Body:     'Manrope', sans-serif (Clean, Modern)
+Mono:     'Geist Mono', monospace (Technical, Brutalist)
 ```
 
-**Loading strategy**: Self-host both fonts via `/public/fonts/`. No Google Fonts DNS calls. Use `font-display: swap`.
+**Loading strategy**: Self-host fonts via `/public/fonts/`. Use `font-display: swap`.
 
 #### Type Scale
+Use exaggerated hierarchy. Massive Serifs (headers) paired with tiny Monospace captions.
 
-| Role | Size / Line Height | Weight | Letter Spacing | Usage |
-|------|--------------------|--------|----------------|-------|
-| **Hero** | `clamp(3.5rem, 8vw, 7rem)` / 1.0 | 300 (Light) | `-0.02em` | Artist name on hero |
-| **Display** | `clamp(2rem, 4vw, 3.5rem)` / 1.1 | 400 (Regular) | `-0.01em` | Section titles |
-| **Title** | `clamp(1.25rem, 2vw, 1.75rem)` / 1.2 | 500 | `0` | Service card titles |
-| **Subtitle** | `1.125rem` / 1.4 | 400 | `0.02em` | Section subtitles, eyebrow labels |
-| **Body Large** | `1.125rem` / 1.7 | 400 | `0` | Artist bio, service descriptions |
-| **Body** | `1rem` / 1.6 | 400 | `0` | Standard UI text, form fields |
-| **Body Small** | `0.875rem` / 1.5 | 400 | `0` | Captions, secondary info |
-| **Label** | `0.75rem` / 1.0 | 500 | `0.12em` | Form labels (uppercase), badges |
-| **Micro** | `0.6875rem` / 1.0 | 400 | `0.08em` | Timestamps, metadata |
+| Role | Size | Font | Letter Spacing | Usage |
+|------|------|------|----------------|-------|
+| **Ultra Hero** | `clamp(5rem, 12vw, 10rem)` | Cormorant | `-0.04em` | Artist name on hero |
+| **Display** | `clamp(3rem, 6vw, 5rem)` | Cormorant | `-0.02em` | Section titles |
+| **Accent Title** | `2rem` | Syne | `0` | Service highlights |
+| **Body** | `1rem` | Manrope | `0` | Descriptions |
+| **Technical Label** | `10px` | Geist Mono | `0.2em` (UPPER) | Specs, captions |
+| **Mono Meta** | `12px` | Geist Mono | `0.05em` | Timestamps, data |
 
-**Design rule**: Hero and Display headings use Cormorant Garamond. Everything else uses DM Sans. This contrast — a breathable editorial serif against a clean geometric sans — is the typographic identity of the site.
+**Design rule**: Massive Serifs (Cormorant) + Bold Accents (Syne) + Brutalist Mono (Geist). This contrast is the premium identity of the site.
 
 ---
 
