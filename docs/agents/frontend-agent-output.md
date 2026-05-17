@@ -22,7 +22,7 @@
 | API Layer | **Next.js API Routes** (App Router Route Handlers) | Booking endpoints, admin endpoints — Hono upgrade path if needed |
 | Image CDN | **next/image** + Supabase Storage | Portfolio assets, automatic WebP, lazy loading |
 | Email | **Resend** | Booking confirmation emails (artist + client) |
-| Deployment | **Vercel** | Zero-config, auto-deploy on git push, custom domain |
+| Deployment | **Vercel** | Hobby (free) → Pro |
 
 ---
 
@@ -31,16 +31,16 @@
 ```
 tattoo-portfolio/
 ├── app/
-│   ├── (site)/                    # Public-facing pages (layout with nav/footer)
-│   │   ├── page.tsx               # Homepage — Hero, Gallery, Services, About, CTA
+│   ├── (site)/                    # Public-facing routes
+│   │   ├── page.tsx               # Homepage entry (imports from @/pages/site/sitePage)
 │   │   ├── booking/
 │   │   │   └── page.tsx           # Multi-step booking flow
 │   │   └── layout.tsx             # Site layout (nav, footer, analytics)
-│   ├── (admin)/                   # Protected admin area
+│   ├── (admin)/                   # Protected admin routes
 │   │   ├── login/
 │   │   │   └── page.tsx           # Artist login
 │   │   ├── dashboard/
-│   │   │   └── page.tsx           # Calendar + availability management + bookings list
+│   │   │   └── page.tsx           # Dashboard entry
 │   │   └── layout.tsx             # Admin layout (auth guard, minimal chrome)
 │   ├── api/
 │   │   ├── bookings/
@@ -49,8 +49,14 @@ tattoo-portfolio/
 │   │   │   └── route.ts           # GET /api/availability, POST (admin set), DELETE (admin remove)
 │   │   └── auth/
 │   │       └── route.ts           # Supabase auth callback
-│   ├── globals.css                # CSS custom properties (design tokens), Tailwind base
+│   ├── globals.css                # Tailwind v4 base, OKLCH variables, @theme blocks
 │   └── layout.tsx                 # Root layout (fonts, metadata, providers)
+│
+├── pages/                         # Complex page-level components (App Router)
+│   ├── site/
+│   │   └── sitePage.tsx           # Homepage implementation
+│   └── admin/
+│       └── dashboardPage.tsx      # Dashboard implementation
 │
 ├── components/
 │   ├── ui/                        # Primitive, reusable UI components
@@ -60,7 +66,7 @@ tattoo-portfolio/
 │   │   ├── Badge.tsx
 │   │   └── LoadingSpinner.tsx
 │   ├── site/                      # Page-level section components
-│   │   ├── Hero.tsx
+│   │   ├── HeroSection.tsx
 │   │   ├── Gallery.tsx
 │   │   ├── GalleryImage.tsx
 │   │   ├── ServiceCard.tsx
@@ -88,6 +94,7 @@ tattoo-portfolio/
 │   ├── validations/
 │   │   ├── booking.ts             # Zod schema for booking form
 │   │   └── availability.ts        # Zod schema for slot management
+│   ├── motion.ts                  # Shared Framer Motion variants
 │   └── utils.ts                   # Shared utilities (date formatting, cn(), etc.)
 │
 ├── hooks/
@@ -106,8 +113,8 @@ tattoo-portfolio/
 │
 ├── middleware.ts                  # Auth guard: redirects /admin/* if not authenticated
 ├── next.config.ts
-├── tailwind.config.ts
-└── .env.local                     # Supabase URL, anon key, Resend key
+├── postcss.config.mjs             # Tailwind v4 uses PostCSS
+└── .env.local                     # Local secrets (never committed)
 ```
 
 ---
